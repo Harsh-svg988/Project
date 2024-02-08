@@ -10,7 +10,7 @@ text.addEventListener("input", function() {
 });
 
 postbutton.addEventListener("click", function(){
-    if (text.value.trim().length > 0){
+    if (text.value.length > 0){
     let post = document.createElement("div");
     post.id = "created-post";
     post.innerHTML = text.value;
