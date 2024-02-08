@@ -11,27 +11,27 @@ text.addEventListener("input", function() {
 
 postbutton.addEventListener("click", function(){
     if (text.value.length > 0){
-    let post = document.createElement("div");
-    post.id = "created-post";
+     let post = document.createElement("div");
+     post.id = "created-post";
     post.innerHTML = text.value;
     let count = 0;
     wordcount.innerHTML = 0 + "/100";
     text.value = "";
-    let react = document.createElement("div");
-    react.id = "react";
+    let reactions = document.createElement("div");
+    reactions.id = "react";
     let like = document.createElement("img");
     like.id = "like";
-    like.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/029/original/heart.png?1706888679";
+     like.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/029/original/heart.png?1706888679";
     let del = document.createElement("img");
     del.id = "del";
     del.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/027/original/delete.png?1706888643";
     let comment = document.createElement("img");
     comment.id = "comment";
     comment.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/026/original/comment.png?1706888619";
-    react.appendChild(like);
-    react.appendChild(del);
-    react.appendChild(comment);
-    post.appendChild(react);
+    reactions.appendChild(like);
+    reactions.appendChild(del);
+    reactions.appendChild(comment);
+    post.appendChild(reactions);
     board.appendChild(post);
     
     let likewatcher = false;
@@ -46,10 +46,15 @@ postbutton.addEventListener("click", function(){
         }
     });
 
+    
     del.addEventListener("click", function(){
         var result = confirm("Want to delete?");
         if (result) {
             post.remove();
+            let comments = document.querySelectorAll(".real-cmt"); 
+            comments.forEach(comment => {
+            comment.remove();
+            });
         }
     });
 
@@ -60,7 +65,7 @@ postbutton.addEventListener("click", function(){
         textbox.placeholder = "Write a comment...";
         let c_btn = document.createElement("button");
         c_btn.id = "c-btn";
-        c_btn.innerText = "Comment";
+
         commentbox.appendChild(textbox);
         board.insertBefore(commentbox, post.nextSibling);
 
