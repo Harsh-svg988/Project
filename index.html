@@ -1,67 +1,40 @@
 
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scaler Social</title>
-    <link href="./style.css" rel="stylesheet"/>
+    <title>scaler-social</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <div class="navbar">
-            <img class="left-image" src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/033/original/SST_Logo.png?1706888781" alt="Left Image">
-            <img class="right-image" src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/032/original/scaler-social.png?1706888764" alt="Right Image">
-          </div>
-          <hr class="line">
+        <div id="img1" style="overflow:hidden"><img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/033/original/SST_Logo.png?1706888781" alt=""></div>
+        <div id="img2"><img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/032/original/scaler-social.png?1706888764" alt=""></div>
     </header>
-        <section class = "main">
-            <section class = "post-box">
-                <h3>Post your thoughts here</h3>
-                <div class="box">
-                    <div class="post-upper">
-                        <div>
-                            <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/031/original/profile_image.png?1706888739" >
-                        </div>
-                        <div>
-                            <textarea name="#" id="post-area" cols="30" rows="10"></textarea>
-                        </div>
-                    </div>
-                    <div class="post-lower">
-                        <span><span class="count_of_char">0</span>/100</span>
-                        <button id="post-btn">Post</button>
-                    </div>
+    <div class="container">
+        <div class="left-container">
+            <h3 id="post-heading">Post your thoughts here</h3>
+            <div class="text-container">
+                <div class="c1">
+                    <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/031/original/profile_image.png?1706888739" alt="">
+                    <textarea name="" id="text-area" cols="30" rows="10" placeholder="Type your thoughts here...." style="text-align: center;"></textarea>
                 </div>
-            </section>
-            <section class="chat-posts">
-                <h3>Your Feed</h3>
-                <div class="posts">
-                    <div class="post-main">
-                        <div class="post-right">
-                            <div class="post-det">
-                                <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/031/original/profile_image.png?1706888739" alt="#">
-                                <h4>Name</h4>
-                                <h5>@chay2203</h5>
-                                <div class="post-right-btns">
-                                    <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/028/original/edit.png?1706888661" alt="#">
-                                    <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/027/original/delete.png?1706888643" alt="#">
-                                </div>
-                            </div>
-                            <div class="post-txt-area">
-                                <textarea name="post" id="post-area-text" cols="30" rows="10"></textarea>
-                            </div>
-                            <div class="like-cmnt-btns">
-                                <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/026/original/comment.png?1706888619" alt="#">
-                                <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/029/original/heart.png?1706888679" alt="#">
-                            </div>
-                        </div>
-                    </div>
+                <div class="c2">
+                    <div id="word-count">0/100</div>
+                    <button id="post-button">Post</button>
                 </div>
-            </section>
-        </section>
-
-    <footer>
-    </footer>
+            </div>
+        </div>
+        <div class="right-container">
+            <h3>Your Feed</h3>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
-<script src="./script.js"></script>
 </html>

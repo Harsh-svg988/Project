@@ -1,102 +1,90 @@
-const postButton = document.getElementById("post-btn");
-const postArea = document.getElementById("post-area");
-const posts = document.querySelector(".posts");
 
-postButton.addEventListener("click", function() {
-    if (postArea.value) {
-        const newPost = document.createElement("div");
-        newPost.classList.add("post-main");
-        newPost.innerHTML = `
-            <div class="prof-img">
-                <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/031/original/profile_image.png?1706888739" alt="#">
-            </div>
-            <div class="post-right">
-                <div class="post-det">
-                    <h4>Name</h4>
-                    <h5>@chay2203</h5>
-                    <div class="post-right-btns">
-                        <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/028/original/edit.png?1706888661" alt="#">
-                        <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/027/original/delete.png?1706888643" alt="#">
-                    </div>
-                </div>
-                <div class="post-txt-area">
-                    <p>${postArea.value}</p>
-                </div>
-                <div class="like-cmnt-btns">
-                    <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/026/original/comment.png?1706888619" alt="#">
-                    <img src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/029/original/heart.png?1706888679" alt="#">
-                </div>
-            </div>
-        `;
-        posts.appendChild(newPost);
-        postArea.value = "";
-    }
-});
-const PostArea = document.getElementById('post-area');
-const charCount = document.querySelector('.count_of_char');
+let postbutton = document.querySelector("#post-button");
+let board = document.querySelector(".right-container");
+let text = document.querySelector("#text-area");
+let wordcount = document.querySelector("#word-count");
 
-postArea.addEventListener('input', () => {
-  const text = PostArea.value;
-  charCount.textContent = text.length;
-
-  if (text.length > 100) {
-    PostArea.value = text.substring(0, 100);
-  }
+text.addEventListener("input", function() {
+    let count = text.value.length;
+    wordcount.innerHTML = count + "/100";
 });
 
-document.getElementById('post-btn').addEventListener('click', function() {
-    const postAreaValue = document.getElementById('post-area').value;
-  
-    const newPost = document.createElement('div');
-    newPost.classList.add('post');
-    const postUpper = document.createElement('div');
-    postUpper.classList.add('post-upper');
-  
-    const userImage = document.createElement('img');
-    // userImage.src = 'path/to/user/image';
-    // userImage.alt = 'User Image';
-  
-    const postContent = document.createElement('p');
-    postContent.textContent = postAreaValue;
-  
-    postUpper.appendChild(userImage);
-    postUpper.appendChild(postContent);
-  
-    // Append the post upper element to the new post element
-    newPost.appendChild(postUpper);
-
-  
-     const postLower = document.createElement('div');
-       postLower.classList.add('post-lower');
-    const likeBtn = document.createElement('button');
-    const commentBtn = document.createElement('button');
-  
-    postLower.appendChild(likeBtn);
-    postLower.appendChild(commentBtn);
-  
-    newPost.appendChild(postLower);
-  
-    document.querySelector('.post-box').appendChild(newPost);
-  
-    document.getElementById('post-area').value = '';
-  });
-  
-  document.querySelectorAll('.like-cmnt-btns button').forEach(function(button) {
-    button.addEventListener('click', function() {
-      button.classList.toggle('liked');
-      button.classList.toggle('commented');
+postbutton.addEventListener("click", function(){
+    if (text.value.trim().length > 0){
+    let post = document.createElement("div");
+    post.id = "created-post";
+    post.innerHTML = text.value;
+    let count = 0;
+    wordcount.innerHTML = 0 + "/100";
+    text.value = "";
+    let react = document.createElement("div");
+    react.id = "react";
+    let like = document.createElement("img");
+    like.id = "like";
+    like.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/029/original/heart.png?1706888679";
+    let del = document.createElement("img");
+    del.id = "del";
+    del.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/027/original/delete.png?1706888643";
+    let comment = document.createElement("img");
+    comment.id = "comment";
+    comment.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/026/original/comment.png?1706888619";
+    react.appendChild(like);
+    react.appendChild(del);
+    react.appendChild(comment);
+    post.appendChild(react);
+    board.appendChild(post);
+    
+    let likewatcher = false;
+    like.addEventListener("click", function(){
+        if(likewatcher==false){
+            like.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/025/original/state_clicked.png?1706888455";
+            likewatcher  = true;
+        }
+        else{
+            like.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/029/original/heart.png?1706888679"
+            likewatcher = false;
+        }
     });
-  });
 
-  document.querySelectorAll('.like-cmnt-btns .heart').forEach(function(heartBtn) {
-    heartBtn.addEventListener('click', function() {
-      heartBtn.classList.toggle('liked');
-      if (heartBtn.classList.contains('liked')) {
-        heartBtn.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/025/original/state_clicked.png?1706888455";
-      } else {
-        heartBtn.src = "https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/029/original/heart.png?1706888679";
-      }
+    del.addEventListener("click", function(){
+        var result = confirm("Want to delete?");
+        if (result) {
+            post.remove();
+        }
     });
-  });
+
+    comment.addEventListener("click", function(){
+        let commentbox = document.createElement("div");
+        let textbox = document.createElement("textarea");
+        textbox.id = "text-box";
+        textbox.placeholder = "Write a comment...";
+        let c_btn = document.createElement("button");
+        c_btn.id = "c-btn";
+        c_btn.innerText = "Comment";
+        commentbox.appendChild(textbox);
+        board.insertBefore(commentbox, post.nextSibling);
+
+
+        c_btn.addEventListener("click",function(){
+            let realcmt = document.createElement("div");
+            realcmt.id = "real-cmt";
+            realcmt.innerHTML = textbox.value;
+            console.log(commentbox.innerHTML);
+            commentbox.remove();
+            board.appendChild(realcmt);
+        });
+    });
+}
+else{
+    alert("Please write something before Posting");
+}
+});
+
+
+
+
+
+
+ 
   
   
